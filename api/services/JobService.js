@@ -29,12 +29,11 @@ module.exports = class JobService extends Service {
   create(data) {
     const Job = this.app.orm.Job
     SequelizeSlugify.slugifyModel(Job, {
-      source: ['title']
+      source: ['company', 'job_type', 'title']
     })
 
-    return Job.create(data).then(job => job.get({
-      attributes: this.hidden
-    }))
+    return Job.create(data)
+      .then(job => job.get({ plain: true, attributes: { exclude: this.hidden } }))
   }
 
   update(slug, data) {
@@ -48,9 +47,7 @@ module.exports = class JobService extends Service {
     return this.app.orm.Job.update(values, {
       where: { slug: slug }
     })
-      .then(job => job.get({
-        attributes: this.hidden
-      }))
+      .then(job => job.get({ plain: true, attributes: { exclude: this.hidden } }))
   }
 }
 

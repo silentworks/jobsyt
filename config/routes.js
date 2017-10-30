@@ -22,28 +22,25 @@ module.exports = [
 
   {
     method: 'GET',
-    path: '/job',
+    path: '/v1/job',
     handler: 'JobController.index'
   },
 
   {
     method: 'GET',
-    path: '/job/{uuid}',
+    path: '/v1/job/{slug}',
     handler: 'JobController.show'
   },
 
   {
     method: 'POST',
-    path: '/job',
+    path: '/v1/job',
     handler: 'JobController.create'
   },
 
-  /**
-   * Constrain the DefaultController.info handler to accept only GET requests.
-   */
   {
-    method: [ 'GET' ],
-    path: '/api/v1/default/info',
-    handler: 'DefaultController.info'
+    method: 'PUT',
+    path: '/v1/job/{slug}',
+    handler: 'JobController.update'
   }
 ]

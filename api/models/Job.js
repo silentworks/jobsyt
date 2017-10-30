@@ -36,11 +36,7 @@ module.exports = class Job extends Model {
         type: Sequelize.UUID,
         defaultValue: Sequelize.DataTypes.UUIDV1
       },
-      slug: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
-      },
+      slug: { type: Sequelize.STRING, unique: true },
       title: { type: Sequelize.STRING, allowNull: false },
       company: { type: Sequelize.STRING, allowNull: false },
       location: { type: Sequelize.STRING, allowNull: false },
